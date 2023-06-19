@@ -3,12 +3,12 @@ const AnimeUser = require('../modals/userModels')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
-const getUser = async (req, res)=>{
+const getUser = async (req, res) => {
     const getAllUser = await AnimeUser.find().select('-password')
     res.send(getAllUser)
 }
 
-const register = asyncHandler( async (req, res) =>  {
+const register = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
 
     if (!name || !email || !password) {
@@ -27,7 +27,7 @@ const register = asyncHandler( async (req, res) =>  {
     const salt = await bcrypt.genSalt(12)
 
     const hashedPassword = await bcrypt.hash(password, salt)
-    
+
     // user create
     const user = await AnimeUser.create({
         name,
@@ -80,14 +80,14 @@ const generateToken = (id) => {
 }
 
 
-const getMe = (req,res)=>{
+const getMe = (req, res) => {
     res.status(200)
-   const user = {
-    id : req.user._id,
-    name : req.user.name,
-    email : req.user.email
-   }
-   res.send(user)
+    const user = {
+        id: req.user._id,
+        name: req.user.name,
+        email: req.user.email
+    }
+    res.send(user)
 }
 
-module.exports = { register , loginUser , getUser , getMe}
+module.exports = { register, loginUser, getUser, getMe }
