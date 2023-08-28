@@ -18,7 +18,9 @@ app.use('/api/user', require('./routes/userRoutes'))
 app.get('/', (req, res) => {
     res.send('Welcome to animes Blog')
 })
-
+// aqife23
+// aqife G ...u
+// mobile app... Firebace
 app.use(errorHandler)
 
 app.listen(PORT, () => {
